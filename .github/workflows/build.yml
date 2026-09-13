@@ -21,29 +21,8 @@ jobs:
            debug_symbols=no
            optimize=size
 
-
-      - name: Copy final binary to root
-        run: |
-          # 1. Store the output directory path from step outputs
-          BUILD_DIR="${{ steps.godot.outputs.directory }}"
-    
-          # 2. Search for final compiled binaries/archives in BUILD_DIR (excluding intermediate object files/folders)
-          FINAL_FILE=$(find "$BUILD_DIR" -maxdepth 2 -type f \( -name "*.apk" -o -name "*.a" -o -name "*.so" -o -name "*.exe" -o -name "godot*" \) ! -name "*.o" ! -name "*.os" | head -n 1)
-    
-          # 3. Check if file was found before copying
-          if [ -z "$FINAL_FILE" ]; then
-            echo "Error: No binary file found in $BUILD_DIR"
-            echo "Contents of build directory:"
-            ls -la "$BUILD_DIR"
-            exit 1
-          fi
-    
-          echo "Found binary: $FINAL_FILE"
-          cp "$FINAL_FILE" ./final_template_output
-
-
       - name: Upload Binary Artifact
         uses: actions/upload-artifact@v4
         with:
           name: godot-compiled-template
-          path: ./final_template_output
+          path: ${{ steps.godot.outputs.directory }}
