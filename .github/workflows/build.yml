@@ -20,8 +20,18 @@ jobs:
          options: |
            debug_symbols=no
 
-      - name: Upload Built Binary
+
+      - name: Copy final binary to root
+        run: |
+          FINAL_FILE=$(find ${{ steps.godot.outputs.directory }}/bin -maxdepth 1 -type f \( -name "*.apk" -o -name "*.a" -o -name "*.so" -o -name "*.zip" -o -name "godot*" \) | head -n 1)
+          
+          cp "$FINAL_FILE" ./final_template_output
+          
+          echo "Copied: $FINAL_FILE"
+
+
+      - name: Upload Binary Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: custom-godot-editor
-          path: ${{ steps.godot.outputs.directory}}
+          name: godot-compiled-template
+          path: ./final_template_output
