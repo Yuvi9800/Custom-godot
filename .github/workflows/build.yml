@@ -19,15 +19,27 @@ jobs:
          architecture: arm64
          options: |
            debug_symbols=no
+           optimize=size
 
 
       - name: Copy final binary to root
         run: |
-          FINAL_FILE=$(find ${{ steps.godot.outputs.directory }}/bin -maxdepth 1 -type f \( -name "*.apk" -o -name "*.a" -o -name "*.so" -o -name "*.zip" -o -name "godot*" \) | head -n 1)
-          
+          # 1. Store the output directory path from step outputs
+          BUILD_DIR="${{ steps.godot.outputs.directory }}"
+    
+          # 2. Search for final compiled binaries/archives in BUILD_DIR (excluding intermediate object files/folders)
+          FINAL_FILE=$(find "$BUILD_DIR" -maxdepth 2 -type f \( -name "*.apk" -o -name "*.a" -o -name "*.so" -o -name "*.exe" -o -name "godot*" \) ! -name "*.o" ! -name "*.os" | head -n 1)
+    
+          # 3. Check if file was found before copying
+          if [ -z "$FINAL_FILE" ]; then
+            echo "Error: No binary file found in $BUILD_DIR"
+            echo "Contents of build directory:"
+            ls -la "$BUILD_DIR"
+            exit 1
+          fi
+    
+          echo "Found binary: $FINAL_FILE"
           cp "$FINAL_FILE" ./final_template_output
-          
-          echo "Copied: $FINAL_FILE"
 
 
       - name: Upload Binary Artifact
