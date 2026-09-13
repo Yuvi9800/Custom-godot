@@ -1,0 +1,27 @@
+﻿name: Godot Build
+on: [ workflow_call, workflow_dispatch ]
+
+jobs:
+  build:
+    name: Compile Godot
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build Godot by Action Commons
+        id: godot
+        uses: ActionCommons/build-godot@v1.1.0
+        with:
+         version: 4.7.1
+         platform: android
+         target: template_release
+         architecture: arm64
+         options: |
+           debug_symbols=no
+
+      - name: Upload Built Binary
+        uses: actions/upload-artifact@v4
+        with:
+          name: custom-godot-editor
+          path: ${{ steps.godot.outputs.directory}}
