@@ -43,7 +43,6 @@ jobs:
           # Build target: Release Template, Architecture: ARM64
           scons platform=android target=template_release arch=arm64 \
                 module_upnp_enabled=no \
-                module_godot_physics_2d_enabled=false \
                 module_godot_physics_3d_enabled=false \
                 module_openxr_enabled=false \
                 pulseaudio=false \
@@ -51,15 +50,26 @@ jobs:
                 x11=false \
                 forward_plus_renderer=false \
                 disable_xr=true \
-                disable_physics_2d=true \
                 disable_navigation_2d=true \
                 disable_navigation_3d=true \
+                module_text_server_advanced_enabled=no \
+                module_text_server_fb_enabled=yes \
+                module_gridmap_enabled=no \
+                module_mobile_vr_enabled=no \
+                module_webxr_enabled=no \
+                module_webrtc_enabled=no \
+                module_websocket_enabled=no \
+                module_jsonrpc_enabled=no \
+                module_bmp_enabled=no \
+                module_dds_enabled=no \
+                module_tga_enabled=no \
+                module_svg_enabled=no
                 optimize=size
 
       - name: Locate and Collect Compiled .so Libraries
         run: |
           mkdir -p output_so/
-          # Find libgodot_android.so or platform-specific variant inside platform/android/ or bin/
+          # Final libgodot_android.so or platform-specific variant inside platform/android/ or bin/
           find . -name "*.so" -exec cp {} output_so/ \;
 
       - name: Upload .so Shared Libraries
