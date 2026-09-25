@@ -41,7 +41,7 @@ jobs:
           SCRIPT_AES256_ENCRYPTION_KEY: ${{ secrets.ENCRYPTION_KEY }}
         run: |
           # Build target: Release Template, Architecture: ARM64
-          scons platform=android target=template_release arch=arm64 \
+          scons platform=android target=template_release arch=arm64 production=yes \
                 module_upnp_enabled=no \
                 module_godot_physics_3d_enabled=false \
                 module_openxr_enabled=false \
@@ -63,7 +63,11 @@ jobs:
                 module_bmp_enabled=no \
                 module_dds_enabled=no \
                 module_tga_enabled=no \
-                module_svg_enabled=no
+                module_svg_enabled=no \
+                debug_symbols=no \
+                lto=full \
+                deprecated=no \
+                use_static_cpp=yes \
                 optimize=size
 
       - name: Locate and Collect Compiled .so Libraries
