@@ -33,7 +33,7 @@ jobs:
       - name: Set up Android NDK
         uses: nttld/setup-ndk@v1
         with:
-          ndk-version: r28b
+          ndk-version: r27b
           link-to-sdk: true
 
       - name: Compile libgodot_android.so (arm64-v8a)
@@ -43,6 +43,17 @@ jobs:
           # Build target: Release Template, Architecture: ARM64
           scons platform=android target=template_release arch=arm64 \
                 module_upnp_enabled=no \
+                module_godot_physics_2d_enabled=false \
+                module_godot_physics_3d_enabled=false \
+                module_openxr_enabled=false \
+                pulseaudio=false \
+                wayland=false \
+                x11=false \
+                forward_plus_renderer=false \
+                disable_xr=true \
+                disable_physics_2d=true \
+                disable_navigation_2d=true \
+                disable_navigation_3d=true \
                 optimize=size
 
       - name: Locate and Collect Compiled .so Libraries
