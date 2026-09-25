@@ -36,6 +36,10 @@ jobs:
           ndk-version: r29
           link-to-sdk: true
 
+      - name: Install Swappy Android SDK
+        run: |
+          python misc/scripts/install_swappy_android.py
+
       - name: Compile libgodot_android.so (arm64-v8a)
         env:
           SCRIPT_AES256_ENCRYPTION_KEY: ${{ secrets.ENCRYPTION_KEY }}
