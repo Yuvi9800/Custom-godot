@@ -48,9 +48,6 @@ jobs:
           scons platform=android target=template_release arch=arm64 production=yes \
                 module_upnp_enabled=no \
                 module_openxr_enabled=false \
-                pulseaudio=false \
-                wayland=false \
-                x11=false \
                 forward_plus_renderer=false \
                 disable_xr=true \
                 disable_navigation_2d=true \
@@ -68,7 +65,6 @@ jobs:
                 module_tga_enabled=no \
                 debug_symbols=no \
                 lto=full \
-                deprecated=no \
                 use_static_cpp=yes \
                 optimize=size
 
