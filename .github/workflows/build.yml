@@ -50,6 +50,7 @@ jobs:
                 module_openxr_enabled=no \
                 forward_plus_renderer=no \
                 disable_xr=yes \
+                module_camera_enabled=no \
                 disable_navigation_2d=yes \
                 disable_navigation_3d=yes \
                 module_godot_physics_3d_enabled=no \
@@ -57,6 +58,9 @@ jobs:
                 module_text_server_fb_enabled=yes \
                 graphite=no \
                 module_gridmap_enabled=no \
+                module_raycast_enabled=no \
+                module_regex_enabled=no \
+                module_csg_enabled=no \
                 module_mobile_vr_enabled=no \
                 module_webxr_enabled=no \
                 module_webrtc_enabled=no \
