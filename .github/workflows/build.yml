@@ -47,14 +47,15 @@ jobs:
           # Build target: Release Template, Architecture: ARM64
           scons platform=android target=template_release arch=arm64 production=yes \
                 module_upnp_enabled=no \
-                module_openxr_enabled=false \
-                forward_plus_renderer=false \
-                disable_xr=true \
-                disable_navigation_2d=true \
-                disable_navigation_3d=true \
-                module_godot_physics_3d_enabled=false \
-                module_text_server_advanced_enabled=no \
+                module_openxr_enabled=no \
+                forward_plus_renderer=no \
+                disable_xr=yes \
+                disable_navigation_2d=yes \
+                disable_navigation_3d=yes \
+                module_godot_physics_3d_enabled=no \
+                module_text_server_adv_enabled=no \
                 module_text_server_fb_enabled=yes \
+                graphite=no \
                 module_gridmap_enabled=no \
                 module_mobile_vr_enabled=no \
                 module_webxr_enabled=no \
