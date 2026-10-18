@@ -72,6 +72,7 @@ jobs:
                 module_bmp_enabled=no \
                 module_dds_enabled=no \
                 module_tga_enabled=no \
+                module_theora_enabled=no \
                 debug_symbols=no \
                 lto=full \
                 use_static_cpp=yes \
