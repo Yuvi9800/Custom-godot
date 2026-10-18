@@ -49,6 +49,9 @@ jobs:
                 module_upnp_enabled=no \
                 module_openxr_enabled=no \
                 forward_plus_renderer=no \
+                forward_mobile_renderer=no \
+                rendering_device=no \
+                vulkan=no \
                 disable_xr=yes \
                 module_camera_enabled=no \
                 disable_navigation_2d=yes \
