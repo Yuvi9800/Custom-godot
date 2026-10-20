@@ -52,7 +52,6 @@ jobs:
                 forward_mobile_renderer=no \
                 rendering_device=no \
                 vulkan=no \
-                module_fbx_enabled=no \
                 disable_xr=yes \
                 module_camera_enabled=no \
                 disable_navigation_2d=yes \
@@ -62,6 +61,7 @@ jobs:
                 module_text_server_fb_enabled=yes \
                 graphite=no \
                 module_msdfgen_enabled=no \
+                module_zip_enabled=no \
                 module_gridmap_enabled=no \
                 module_raycast_enabled=no \
                 module_regex_enabled=no \
