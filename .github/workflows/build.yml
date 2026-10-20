@@ -72,7 +72,7 @@ jobs:
                 module_webrtc_enabled=no \
                 module_websocket_enabled=no \
                 module_jsonrpc_enabled=no \
-                module_tinyexr_enabled=no \
+                module_basis_universal_enabled=no \
                 module_hdr_enabled=no \
                 module_bmp_enabled=no \
                 module_dds_enabled=no \
